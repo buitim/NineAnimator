@@ -2089,7 +2089,7 @@
 				CODE_SIGN_ENTITLEMENTS = NineAnimator/NineAnimator.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8WB2V923XT;
+				DEVELOPMENT_TEAM = 2BY8BRNC78;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -2100,7 +2100,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.marcuszhou.NineAnimator;
+				PRODUCT_BUNDLE_IDENTIFIER = com.buitim.NineAnimator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -2115,7 +2115,7 @@
 				CODE_SIGN_ENTITLEMENTS = NineAnimator/NineAnimator.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8WB2V923XT;
+				DEVELOPMENT_TEAM = 2BY8BRNC78;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -2126,7 +2126,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.marcuszhou.NineAnimator;
+				PRODUCT_BUNDLE_IDENTIFIER = com.buitim.NineAnimator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
