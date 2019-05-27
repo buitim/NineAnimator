@@ -22,7 +22,7 @@ import SwiftSoup
 
 extension NASourceNineAnime {
     static let animeLinkParsingRegex = try! NSRegularExpression(pattern: "\\/watch\\/([^/]+)", options: .caseInsensitive)
-    static let episodeLinkParsingRegex = try! NSRegularExpression(pattern: "\\/watch\\/[^/]+\\/([0-9A-Za-z]+)", options: .caseInsensitive)
+//    static let episodeLinkParsingRegex = try! NSRegularExpression(pattern: "\\/watch\\/[^/]+\\/([0-9A-Za-z]+)", options: .caseInsensitive)
     
     func link(from url: URL, _ handler: @escaping NineAnimatorCallback<AnyLink>) -> NineAnimatorAsyncTask? {
         let urlString = url.absoluteString
@@ -37,15 +37,15 @@ extension NASourceNineAnime {
         }
         
         let animeIdentifier = urlString[animeIdentifierMatch.range(at: 1)]
-        var episodeIdentifier: String?
-        
-        if let episodeIdentifierMatch = NASourceNineAnime.episodeLinkParsingRegex.matches(
-            in: urlString,
-            options: [],
-            range: urlString.matchingRange
-            ).first {
-            episodeIdentifier = urlString[episodeIdentifierMatch.range(at: 1)]
-        }
+//        var episodeIdentifier: String?
+//
+//        if let episodeIdentifierMatch = NASourceNineAnime.episodeLinkParsingRegex.matches(
+//            in: urlString,
+//            options: [],
+//            range: urlString.matchingRange
+//            ).first {
+//            episodeIdentifier = urlString[episodeIdentifierMatch.range(at: 1)]
+//        }
         
         let reconstructedAnimePath = "/watch/\(animeIdentifier)"
         guard let reconstructedAnimeLink = URL(string: "\(endpoint)\(reconstructedAnimePath)") else {
@@ -56,8 +56,8 @@ extension NASourceNineAnime {
         let task = NineAnimatorMultistepAsyncTask()
         
         task.add(request(browse: url, headers: [:]) {
-            [weak self, weak task] content, requestError in
-            guard let task = task, let self = self else { return }
+            [weak self] content, requestError in
+            guard let self = self else { return }
             guard let content = content else { return handler(nil, requestError) }
             
             do {
@@ -74,28 +74,7 @@ extension NASourceNineAnime {
                     source: self
                 )
                 
-                if let episodeIdentifier = episodeIdentifier {
-                    let ajaxHeaders: [String: String] = ["Referer": reconstructedAnimeLink.absoluteString]
-                    let animeIdentifierShort = animeIdentifier.split(separator: ".")[1]
-                    
-                    task.add(
-                        self.request(
-                            ajax: "/ajax/film/servers/\(animeIdentifierShort)",
-                            with: ajaxHeaders) { responseJson, responseError in
-                                guard let responseJson = responseJson else { return handler(nil, responseError) }
-                                
-                                do {
-                                    let episodes = try self.parseAvailableEpisodes(from: responseJson, with: animeLink)
-                                    
-                                    guard let episodeLink = episodes.link(withIdentifier: episodeIdentifier) else {
-                                        return handler(nil, NineAnimatorError.responseError("The specified episode does not exist"))
-                                    }
-                                    
-                                    handler(.episode(episodeLink), nil)
-                                } catch { handler(nil, error) }
-                        }
-                    )
-                } else { handler(.anime(animeLink), nil) }
+                handler(.anime(animeLink), nil)
             } catch { handler(nil, error) }
         })
         

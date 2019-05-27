@@ -29,6 +29,7 @@ class ContentListViewController: UITableViewController, ContentProviderDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 160
+        tableView.estimatedRowHeight = 160
         tableView.tableFooterView = UIView()
         tableView.makeThemable()
     }
@@ -50,6 +51,9 @@ class ContentListViewController: UITableViewController, ContentProviderDelegate 
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // Do not attempt to reload until the error is cleared
+        guard providerError == nil else { return }
+        
         let height = scrollView.frame.size.height
         let contentYoffset = scrollView.contentOffset.y
         let distanceFromBottom = scrollView.contentSize.height - contentYoffset
@@ -69,6 +73,24 @@ extension ContentListViewController {
     /// the user scroll down to the end of the page.
     func setPresenting(contentProvider provider: ContentProvider) {
         self.contentSource = provider
+    }
+    
+    /// Create the view controller with a provider
+    class func create(withProvider provider: ContentProvider) -> ContentListViewController? {
+        let storyboard = UIStoryboard(name: "AnimeListing", bundle: Bundle.main)
+        
+        // Instantiate the list view controller
+        guard let listingViewController = storyboard.instantiateInitialViewController() as? ContentListViewController else {
+            Log.error("View controller instantiated from AnimeListing.storyboard is not ContentListViewController")
+            return nil
+        }
+        
+        // Initialize the view controller with content provider
+        listingViewController.setPresenting(
+            contentProvider: provider
+        )
+        
+        return listingViewController
     }
 }
 
@@ -92,6 +114,7 @@ extension ContentListViewController {
         if let providerError = providerError {
             let cell = tableView.dequeueReusableCell(withIdentifier: "search.error", for: indexPath) as! ContentErrorTableViewCell
             cell.error = providerError
+            cell.delegate = self
             cell.makeThemable()
             return cell
         }
@@ -137,5 +160,26 @@ extension ContentListViewController {
     
     func pageIncoming(_ sectionNumber: Int, from page: ContentProvider) {
         DispatchQueue.main.async(execute: tableView.reloadData)
+    }
+}
+
+// MARK: - Delegating events from cells
+extension ContentListViewController {
+    func tryResolveError(_ error: Error, from cell: ContentErrorTableViewCell) {
+        // Create and present authentication controller
+        NAAuthenticationViewController.create(from: error) {
+            [weak self] in
+            guard let self = self else { return }
+            // Reset provider error
+            self.providerError = nil
+            // Reload table view data
+            self.tableView.performBatchUpdates({
+                self.tableView.reloadData()
+                self.tableView.contentOffset = .zero
+                self.tableView.layoutIfNeeded()
+            }, completion: nil)
+            // Load more resources
+            self.contentSource?.more()
+        } .unwrap { present($0, animated: true, completion: nil) }
     }
 }

@@ -29,7 +29,12 @@ class NineAnimator: SessionDelegate {
     
     /// A dummy artwork url
     class var placeholderArtworkUrl: URL {
-        return URL(string: "https://raw.githubusercontent.com/SuperMarcus/NineAnimator/master/Misc/Media/nineanimator_banner.jpg")!
+        return URL(string: "https://nineanimator-api.marcuszhou.com/static/resources/artwork_not_available.jpg")!
+    }
+    
+    /// Join NineAnimator community on Discord
+    class var discordServerInvitationUrl: URL {
+        return URL(string: "https://discord.gg/dzTVzeW")!
     }
     
     let client = URLSession(configuration: .default)
@@ -118,11 +123,12 @@ extension NineAnimator {
     
     /// Register the default set of sources
     private func registerDefaultSources() {
-        register(source: NASourceNineAnime(with: self))
         register(source: NASourceAnimeUltima(with: self))
         register(source: NASourceWonderfulSubs(with: self))
+        register(source: NASourceAnimePahe(with: self))
         register(source: NASourceGogoAnime(with: self))
         register(source: NASourceAnimeTwist(with: self))
+        register(source: NASourceNineAnime(with: self))
         register(source: NASourceMasterAnime(with: self))
     }
 }
@@ -217,7 +223,7 @@ extension NineAnimator {
     }
     
     func canHandle(link: URL) -> Bool {
-        return sources.reduce(false) { $0 || $1.canHandle(url: link) }
+        return sources.contains { $0.canHandle(url: link) }
     }
 }
 

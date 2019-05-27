@@ -37,7 +37,12 @@ class NASourceNineAnime: BaseSource, Source {
 #endif
     
     var siteDescription: String {
-        return "9anime is a popular free anime streaming website and one of the first and best supported sources of NineAnimator. You may be prompt to complete CAPTCHAs occationally."
+        return "9anime is a popular free anime streaming website and one of the first supported sources of NineAnimator. You may encounter frequent verfication requests when using this site."
+    }
+    
+    // 9anime has been disabled due to IP banning issue
+    override var isEnabled: Bool {
+        return true
     }
     
     lazy var _currentHost: String = possibleHosts.first!

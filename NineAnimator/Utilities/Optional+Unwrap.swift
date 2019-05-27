@@ -29,4 +29,12 @@ extension Optional {
         default: throw error
         }
     }
+    
+    /// Run the closure with the value if there is a value in this optional
+    func unwrap<ResultType>(_ ifUnwrapped: (Wrapped) -> ResultType) -> ResultType? {
+        switch self {
+        case let .some(value): return ifUnwrapped(value)
+        default: return nil
+        }
+    }
 }

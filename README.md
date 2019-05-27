@@ -1,11 +1,30 @@
 ![NineAnimator](Misc/Media/nineanimator_banner.jpg)
 ==========
 
-[![Build Status](https://travis-ci.org/SuperMarcus/NineAnimator.svg?branch=master)](https://travis-ci.org/SuperMarcus/NineAnimator)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-green.svg?style=flat)](https://github.com/Carthage/Carthage)
-![Swift 5.0](https://img.shields.io/badge/Swift-5.0-orange.svg)
-![Platform: iOS](https://img.shields.io/badge/platform-iOS-lightgrey.svg)
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](/LICENSE)
+<p align="center">
+    <a href="https://appcenter.ms">
+        <img src="https://build.appcenter.ms/v0.1/apps/3b570beb-df2c-4506-b374-9c9ffa1f048d/branches/master/badge" alt="MSAppCenter Build status"/>
+    </a>
+    <a href="https://travis-ci.org/SuperMarcus/NineAnimator">
+        <img src="https://travis-ci.org/SuperMarcus/NineAnimator.svg?branch=master" alt="Travis Build status"/>
+    </a>
+    <a href="https://discord.gg/dzTVzeW">
+        <img src="https://img.shields.io/discord/545740643247456267.svg?logo=discord&color=blue" alt="Discord Server"/>
+    </a>
+</p>
+<p align="center">
+    <a href="https://github.com/Carthage/Carthage">
+        <img src="https://img.shields.io/badge/Carthage-compatible-green.svg?style=flat" alt="Carthage Compatible"/>
+    </a>
+    <img src="https://img.shields.io/badge/Swift-5.0-orange.svg" alt="Swift 5.0"/>
+    <img src="https://img.shields.io/badge/platform-iOS-lightgrey.svg" alt="Platform iOS"/>
+    <a href="/LICENSE">
+        <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License: GPL v3"/>
+    </a>
+    <a href="https://app.fossa.com/projects/git%2Bgithub.com%2FSuperMarcus%2FNineAnimator?ref=badge_shield" alt="FOSSA Status">
+        <img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2FSuperMarcus%2FNineAnimator.svg?type=shield"/>
+    </a>
+</p>
 
 A simple yet elegant way of waching anime on your favorite anime websites.
 NineAnimator is a free and open source anime watching app for iOS. GPLv3 Licensed.
@@ -193,11 +212,14 @@ Currently only a selection of video streaming hosts is supported by NineAnimator
 - RapidVideo
 - Mp4Upload
 - Streamango
+- Kiwik
+- AUEngine of Anime Ultima
+- XStreamCDN
+- VidStreaming/VidCDN (unavailable for Google Cast)
 - MyCloud (unavailable for Google Cast)
 - F5 Beta a.k.a. PrettyFast.to (unavailable for Google Cast)
 - Tiwi.Kiwi (may not be available for Google Cast)
 - FastStream (unavailable for Google Cast)
-- AUEngine of Anime Ultima
 - OpenLoad (contributed by [Awsomedude](https://github.com/SuperMarcus/NineAnimator/commit/8d1c0fc196c04c0ca30c6d3b8281ea88b54ab08a))
 - Self-hosted Streaming Services ([masterani.me](//masterani.me), [Anime Twist](//twist.moe)), as well as [Wonderful Subs](//wonderfulsubs.com)
 
@@ -209,25 +231,25 @@ Feel free to open an issue to request additional hosts.
 NineAnimator supports the following anime websites but with different sets
 of features:
 
-- [9anime.ru](//9anime.ru)
+- [Anime Ultima](//animeultima.eu)
     - [x] Basic features (featured list, notifications, search, and playback)
-    - [x] Open arbitrary links
+    - [ ] Open arbitrary links
     - [x] Anime synopsis
-    - [x] Detailed anime attributes (Ratings and Air Date)
-    - [ ] Detailed episode synopsis
+    - [ ] Detailed anime attributes (Only Air Date is available)
+    - [x] Detailed episode synopsis (Air Date and Episode Name are available; no episode synopsis available)
 - [Wonderful Subs](//wonderfulsubs.com)
     - [x] Basic features (featured list, notifications, search, and playback)
     - [x] Open arbitrary links
     - [x] Anime synopsis
     - [ ] Detailed anime attributes (Ratings and Air Date)
     - [x] Detailed episode synopsis
-- [masterani.me](//masterani.me)
+- [gogoanime.io](//gogoanime.io)
     - [x] Basic features (featured list, notifications, search, and playback)
     - [x] Open arbitrary links
     - [x] Anime synopsis
-    - [x] Detailed anime attributes (Ratings and Air Date)
-    - [x] Detailed episode synopsis
-- [gogoanime.io](//gogoanime.io)
+    - [ ] Detailed anime attributes (Only Air Date is available)
+    - [ ] Detailed episode synopsis
+- [Anime Pahe](//animepahe.com)
     - [x] Basic features (featured list, notifications, search, and playback)
     - [x] Open arbitrary links
     - [x] Anime synopsis
@@ -239,12 +261,18 @@ of features:
     - [ ] Anime synopsis
     - [ ] Detailed anime attributes (Air Date is found but not displayed)
     - [ ] Detailed episode synopsis
-- [Anime Ultima](//animeultima.eu)
+- [9anime.ru](//9anime.ru) (be careful when using this website -- 9anime has been known to ban users for using third party applications)
     - [x] Basic features (featured list, notifications, search, and playback)
-    - [ ] Open arbitrary links
+    - [x] Open arbitrary links
     - [x] Anime synopsis
-    - [ ] Detailed anime attributes (Only Air Date is available)
-    - [x] Detailed episode synopsis (Air Date and Episode Name are available; no episode synopsis available)
+    - [x] Detailed anime attributes (Ratings and Air Date)
+    - [ ] Detailed episode synopsis
+- ~~[masterani.me](//masterani.me)~~ (no longer available)
+    - [x] Basic features (featured list, notifications, search, and playback)
+    - [x] Open arbitrary links
+    - [x] Anime synopsis
+    - [x] Detailed anime attributes (Ratings and Air Date)
+    - [x] Detailed episode synopsis
 
 ## Anime Listing & Tracking Websites
 
@@ -325,7 +353,7 @@ There are some limitations to NineAnimator's ability to download and playback vi
 
 ### Light Appearance
 
-| Featured Animes | Recently Viewed | Search |
+| Featured Anime | Recently Viewed | Search |
 | ------------------- | ------------------- | -------- |
 | ![1](Misc/Media/Demo/Light/featured.png) | ![2](Misc/Media/Demo/Light/recents.png) | ![3](Misc/Media/Demo/Light/search.png) |
 
@@ -333,7 +361,7 @@ There are some limitations to NineAnimator's ability to download and playback vi
 | ----------------- | -------------------- | --------------- |
 | ![4](Misc/Media/Demo/Light/search_results.png) | ![5](Misc/Media/Demo/Light/browse_episodes.png) | ![6](Misc/Media/Demo/Light/downloads.png) |
 
-| Featured Animes (iPad) | Picture in Picture (iPad) |
+| Featured Anime (iPad) | Picture in Picture (iPad) |
 | ----------------- | -------------------- |
 | ![7](Misc/Media/Demo/Light/featured_ipad.png) | ![8](Misc/Media/Demo/Light/browse_episodes_ipad.png) |
 
@@ -343,7 +371,7 @@ There are some limitations to NineAnimator's ability to download and playback vi
 
 ### Dark Appearance
 
-| Featured Animes | Recently Viewed | Search |
+| Featured Anime | Recently Viewed | Search |
 | ------------------- | ------------------- | -------- |
 | ![1](Misc/Media/Demo/Dark/featured.png) | ![2](Misc/Media/Demo/Dark/recents.png) | ![3](Misc/Media/Demo/Dark/search.png) |
 
@@ -351,7 +379,7 @@ There are some limitations to NineAnimator's ability to download and playback vi
 | ----------------- | -------------------- | --------------- |
 | ![4](Misc/Media/Demo/Dark/search_results.png) | ![5](Misc/Media/Demo/Dark/browse_episodes.png) | ![6](Misc/Media/Demo/Dark/downloads.png) |
 
-| Featured Animes (iPad) | Picture in Picture (iPad) |
+| Featured Anime (iPad) | Picture in Picture (iPad) |
 | ----------------- | -------------------- |
 | ![7](Misc/Media/Demo/Dark/featured_ipad.png) | ![8](Misc/Media/Demo/Dark/browse_episodes_ipad.png) |
 
@@ -367,12 +395,16 @@ There are some limitations to NineAnimator's ability to download and playback vi
 
 ## Credits
 
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FSuperMarcus%2FNineAnimator.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FSuperMarcus%2FNineAnimator?ref=badge_large)
+
+[3rd-Party Software Reports](https://app.fossa.com/reports/3c67284c-8dcc-4b9f-b70b-9539c3e87377)
 * Thanks [ApolloZhu](https://github.com/ApolloZhu) for helping out!
 * The free and open source chromecast library [OpenCastSwift](https://github.com/mhmiles/OpenCastSwift) (slightly [modified](https://github.com/SuperMarcus/OpenCastSwift)).
 * The amazing [Alamofire](https://github.com/Alamofire/Alamofire) framework
 * [onevcat](https://github.com/onevcat)'s couldn't-be-more-convenient [Kingfisher](https://github.com/onevcat/Kingfisher) framework
 * ...and [scinfu](https://github.com/scinfu)'s awesome [SwiftSoup](https://github.com/scinfu/SwiftSoup)
 * [marcosgriselli](https://github.com/marcosgriselli)'s [ViewAnimator](https://github.com/marcosgriselli/ViewAnimator)
+* [elegantchaos](https://github.com/elegantchaos)'s [DictionaryCoding](https://github.com/elegantchaos/DictionaryCoding)
 
 ### Media & Icons
 

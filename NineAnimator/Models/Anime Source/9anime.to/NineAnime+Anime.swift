@@ -26,6 +26,8 @@ extension NASourceNineAnime {
     static let animeServerListRegex = try! NSRegularExpression(pattern: "<span\\s+class=[^d]+data-name=\"([^\"]+)\">([^<]+)", options: .caseInsensitive)
     
     func anime(from link: AnimeLink, _ handler: @escaping NineAnimatorCallback<Anime>) -> NineAnimatorAsyncTask? {
+//        handler(nil, NineAnimatorError.contentUnavailableError("9anime.to has been temporarily disabled."))
+//        return nil
         let taskTracker = NineAnimatorMultistepAsyncTask()
         taskTracker.add(request(browse: link.link, headers: [:]) {
             [weak taskTracker] response, error in
